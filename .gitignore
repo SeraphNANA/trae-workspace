@@ -1,29 +1,110 @@
-# 系统文件
+# ==============================================
+# 1. 系统文件（绝对不要提交）
+# ==============================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# 编辑器文件
-.vscode/
+# ==============================================
+# 2. 编辑器/IDE文件（忽略本地配置，保留团队共享）
+# ==============================================
+# VS Code / Trae
+.vscode/*
+!.vscode/extensions.json  # 保留团队推荐的扩展，其他忽略
+!.vscode/settings.json    # 可选：保留团队共享的编辑器设置
 .idea/
 *.swp
 *.swo
 *~
+*.sublime-project
+*.sublime-workspace
 
-# 依赖文件
+# Trae 专属本地配置
+.trae/settings.local.json
+.trae/cache/
+.trae/logs/
+
+# ==============================================
+# 3. 依赖/虚拟环境文件（可重新安装，绝对不要提交）
+# ==============================================
+# Node.js
 node_modules/
-pythonvenv/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# 构建文件
+# Python
+pythonvenv/
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ==============================================
+# 4. 构建/编译产物（不用提交，可重新生成）
+# ==============================================
 build/
 dist/
+dist-ssr/
+*.local
+*.exe
+*.dll
+*.so
+*.dylib
 
-# 日志文件
+# ==============================================
+# 5. 日志/临时文件（运行产生，不用提交）
+# ==============================================
 logs/
 *.log
+*.tmp
+*.temp
+temp/
+.cache/
 
-# 环境变量文件
+# ==============================================
+# 6. 敏感信息/环境变量（绝对不要提交，防止泄露）
+# ==============================================
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example  # 保留环境变量模板，不含真实密钥
+*.pem
+*.key
+*.crt
+credentials.json
+config.local.*
+
+# ==============================================
+# 7. 数据/结果文件（爬虫抓取的结果，不用提交）
+# ==============================================
+*.xlsx
+*.csv
+*.xls
+*.zip
+*.rar
+# 如需保留项目配置json，可添加：!config/*.json

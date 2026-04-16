@@ -27,6 +27,7 @@ def parse_args():
     """解析命令行参数"""
     parser = argparse.ArgumentParser(description='千瓜数据抓取器')
     parser.add_argument('--brand', type=str, default='古茗', help='品牌名称')
+    parser.add_argument('--brandid', type=str, default='804643', help='品牌ID')
     parser.add_argument('--channel', type=str, default='抖音', help='渠道（抖音/小红书/微博）')
     parser.add_argument('--start-date', type=str, default='2026-03-01', help='开始日期（YYYY-MM-DD）')
     parser.add_argument('--end-date', type=str, default='2026-03-15', help='结束日期（YYYY-MM-DD）')
@@ -55,6 +56,15 @@ CHANNEL_MAP = {
     "抖音": 2,
     "小红书": 1,
     "微博": 3
+}
+
+# 品牌ID映射
+BRAND_ID_MAP = {
+    "古茗": "804643",
+    "库迪咖啡": "826079",
+    "星巴克": "39010",
+    "蜜雪冰城": "805164"
+    # 可以在这里添加更多品牌
 }
 
 # ==================== 【2. API数据抓取】 ====================
@@ -204,6 +214,15 @@ async def main():
     # 使用命令行参数覆盖默认配置
     config = CONFIG.copy()
     config['brand'] = args.brand
+    
+    # 如果用户指定了brandid，则使用用户指定的；否则根据品牌名称自动获取
+    if args.brandid and args.brandid != '804643':  # 804643是默认值
+        config['brandid'] = args.brandid
+    else:
+        # 根据品牌名称自动获取品牌ID
+        brand_id = BRAND_ID_MAP.get(args.brand, config.get('brandid'))
+        config['brandid'] = brand_id
+    
     config['channel'] = args.channel
     config['start_date'] = args.start_date
     config['end_date'] = args.end_date
@@ -213,6 +232,7 @@ async def main():
     print("千瓜数据抓取工作流 - 开始执行")
     print(f"📋 配置参数:")
     print(f"   品牌: {config.get('brand')}")
+    print(f"   品牌ID: {config.get('brandid')}")
     print(f"   渠道: {config.get('channel')}")
     print(f"   日期范围: {config.get('start_date')} 至 {config.get('end_date')}")
     print(f"   最大抓取数: {config.get('max_items')}")
@@ -239,7 +259,7 @@ async def main():
     
     # 3. 导出Excel
     print("\n[步骤2] 导出Excel...")
-    output_path = f"/root/.openclaw/workspace/千瓜数据_{config.get('brand')}_{config.get('channel')}_{config.get('start_date')}_to_{config.get('end_date')}.xlsx"
+    output_path = f"千瓜数据_{config.get('brand')}_{config.get('channel')}_{config.get('start_date')}_to_{config.get('end_date')}.xlsx"
     ExcelExporter.export(all_data, output_path)
     
     print("\n" + "=" * 60)

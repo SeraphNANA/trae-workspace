@@ -1,0 +1,22 @@
+{
+  "name": "xiaohongshu-image-generator",
+  "version": "1.0.0",
+  "description": "一键生成小红书组图工具",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["xiaohongshu", "image-generator", "content-creation"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "canvas": "^3.2.3",
+    "express": "^5.2.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vite": "^6.0.3"
+  }
+}
