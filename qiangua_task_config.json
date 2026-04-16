@@ -1,0 +1,38 @@
+{
+  "name": "千瓜数据抓取器",
+  "description": "抓取指定品牌、渠道、日期范围的千瓜数据",
+  "command": "python3 qiangua_scraper.py",
+  "parameters": [
+    {
+      "name": "brand",
+      "type": "string",
+      "description": "品牌名称",
+      "default": "古茗"
+    },
+    {
+      "name": "channel",
+      "type": "string",
+      "description": "渠道（抖音/小红书/微博）",
+      "default": "抖音"
+    },
+    {
+      "name": "start_date",
+      "type": "string",
+      "description": "开始日期（YYYY-MM-DD）",
+      "default": "2026-03-01"
+    },
+    {
+      "name": "end_date",
+      "type": "string",
+      "description": "结束日期（YYYY-MM-DD）",
+      "default": "2026-03-15"
+    },
+    {
+      "name": "max_items",
+      "type": "integer",
+      "description": "最多抓取数量",
+      "default": 150
+    }
+  ],
+  "example": "用千瓜数据抓取器抓取品牌星巴克，渠道抖音，日期2026-03-15至2026-03-31"
+}
